@@ -24,7 +24,7 @@ const Help = () => {
                 <HelpOption selected={current === s} option={s}>
                   <HelpButton onClick={() => setCurrent(c => ((c === '' || c !== s) ? s  : ''))}  />
                   {s}
-                  <span class={`bi bi-chevron-${(current === s ? 'up' : 'down')}`}> </span>
+                  <span className={`bi bi-chevron-${(current === s ? 'up' : 'down')}`}> </span>
                 </HelpOption>
                 <HelpListDiv selected={current === s}>
                   <HelpList selected={current === s}>
