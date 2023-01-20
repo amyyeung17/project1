@@ -2,7 +2,7 @@
 
 Small personal project to practice React, Redux, and styled-components concepts. 
 
-## Big update 1/15 to 1/19 
+## Big update 1/15 to 1/18
 
 ### General
 - Consolidated some logic to reduce number of props
@@ -35,7 +35,7 @@ Small personal project to practice React, Redux, and styled-components concepts.
 - Fixed issue where user could change to the editing input box in a list item despite being in delete mode (Input.js)
 
 
-## Improvements to be made
+### Improvements to be made
 - Add documentation 
 - Simplify code
   - CSS ex. remove grid system for flex instead, handle @media queries, adjust so there's more consistentency 
@@ -45,7 +45,9 @@ Small personal project to practice React, Redux, and styled-components concepts.
 - If the history was open on smaller screen sizes and window was resized bigger, set the associated state false. When reverting back to the smaller menu, it's not automatically displayed. (similar to a useEffect hook in Menu.js) (Calc)
 - Replace deprecated createStore to configureStore (App.js)
 
-### Update 1/19
+
+
+## Update 1/19
 - Fixed some major display issues in Todo, Stopwatch, and Timer components
   - Todo - removed the menu when switching to the alternate display mode for bigger screens 
   - Stopwatch - adjusted some positionings for smaller screen (very basic changes based on the current code)
