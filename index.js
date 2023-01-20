@@ -28,7 +28,7 @@ ReactDom.render(
   <>
     <GlobalStyle />
     <Provider store={store}>
-      <BrowserRouter basename="/project1">
+      <BrowserRouter>
         <App /> 
       </BrowserRouter>
     </Provider>
