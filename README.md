@@ -35,7 +35,7 @@ Small personal project to practice React, Redux, and styled-components concepts.
 - Fixed issue where user could change to the editing input box in a list item despite being in delete mode (Input.js)
 
 
-## Improvements to be made
+### Improvements to be made
 - Add documentation 
 - Simplify code
   - CSS ex. remove grid system for flex instead, handle @media queries, adjust so there's more consistentency 
