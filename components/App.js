@@ -20,7 +20,6 @@ const App = () => {
       path = url.slice(0, url.length -1)
     }
     path = path.slice(1)
-    console.log(path)
     return path
   }
 
@@ -31,7 +30,7 @@ const App = () => {
           {states.includes(getUrl(location.pathname)) && <Menu />}
         <Container> 
           <Routes>
-            <Route path='/' element={<Navigate replace to='/todo' />}/>
+            <Route exact path='/' element={<Navigate replace to='/todo' />}/>
             <Route path='/todo' element={<ToDo />} />
             <Route path='/calculator' element={<Calc />} />
             <Route path='/timer' element={<Timer />} />
