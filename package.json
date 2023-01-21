@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "",
   "source": "index.html",
-  "homepage": "/project1",
+  "homepage": ".",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "parcel",
