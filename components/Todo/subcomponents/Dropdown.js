@@ -5,8 +5,7 @@ import { DropdownDiv, DropdownButton } from '../../Style/TodoStyle'
 const Dropdown = ({note, past, smallswitch, switchapp, selectNote, nav, id}) => {
   const displayRef = useRef(null)
   useScrollBottom({condition: (id > past), displayRef, val: id})
-  console.log(switchapp)
-  
+
   return(
     <>
       <DropdownDiv ref={displayRef} smallswitch={smallswitch && (id > -1)} switchapp={switchapp}>
