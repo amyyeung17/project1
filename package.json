@@ -3,7 +3,6 @@
   "version": "1.0.0",
   "description": "",
   "source": "index.html",
-  "homepage": "https://endearing-fenglisu-0d38bc.netlify.app/",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "parcel",
