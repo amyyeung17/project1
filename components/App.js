@@ -30,7 +30,7 @@ const App = () => {
           {states.includes(getUrl(location.pathname)) && <Menu />}
         <Container> 
           <Routes>
-            <Route exact path='/' element={<Navigate replace to='/todo' />}/>
+            <Route path='/' element={<Navigate replace to='/todo' />}/>
             <Route path='/todo' element={<ToDo />} />
             <Route path='/calculator' element={<Calc />} />
             <Route path='/timer' element={<Timer />} />
