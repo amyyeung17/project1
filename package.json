@@ -2,11 +2,11 @@
   "name": "tasks",
   "version": "1.0.0",
   "description": "",
-  "source": "index.html",
+  "source": "./public/index.html",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "parcel",
-    "build": "parcel build index.html --no-scope-hoist"
+    "build": "parcel build ./public/index.html --no-scope-hoist"
   },
   "keywords": [],
   "author": "Amy Yeung <amyyeung17@gmail.com>",
