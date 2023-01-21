@@ -20,7 +20,6 @@ const App = () => {
       path = url.slice(0, url.length -1)
     }
     path = path.slice(1)
-    console.log(import.meta.url)
     return path
   }
 
