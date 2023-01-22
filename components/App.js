@@ -27,7 +27,7 @@ const App = () => {
   return (
     <>
       <ColumnDivAlign>
-          {states.includes(getUrl(location.pathname)) && <Menu />}
+        {states.includes(getUrl(location.pathname)) && <Menu />}
         <Container> 
           <Routes>
             <Route path="/" element={<Navigate replace to="/todo" />}/>
