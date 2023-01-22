@@ -1,11 +1,11 @@
 import React from 'react'
 import ReactDom from 'react-dom'
-import App from './components/App'
+import App from './App'
 import { createStore } from 'redux'
 import { Provider } from 'react-redux'
 import { BrowserRouter } from 'react-router-dom'
 import { createGlobalStyle } from 'styled-components'
-import rootReducer from './reducers/'
+import rootReducer from '../reducers'
 
 const GlobalStyle = createGlobalStyle`
   body {
