@@ -28,7 +28,7 @@ ReactDom.render(
   <>
     <GlobalStyle />
     <Provider store={store}>
-      <BrowserRouter basename={process.env.REACT_APP_PUBLIC_URL}>
+      <BrowserRouter basename={process.env.PUBLIC_URL}>
         <App /> 
       </BrowserRouter>
     </Provider>
