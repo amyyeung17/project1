@@ -30,13 +30,13 @@ const App = () => {
           {states.includes(getUrl(location.pathname)) && <Menu />}
         <Container> 
           <Routes>
-            <Route path='/' element={<Navigate replace to='/todo' />}/>
-            <Route path='/todo' element={<ToDo />} />
-            <Route path='/calculator' element={<Calc />} />
-            <Route path='/timer' element={<Timer />} />
-            <Route path='/stopwatch' element={<Stopwatch />} />
-            <Route path='/help' element={<Help />} />
-            <Route path='*' element={<NotFound />} />
+            <Route path="/" element={<Navigate replace to="/todo" />}/>
+            <Route path="/todo" element={<ToDo />} />
+            <Route path="/calculator" element={<Calc />} />
+            <Route path="/timer" element={<Timer />} />
+            <Route path="/stopwatch" element={<Stopwatch />} />
+            <Route path="/help" element={<Help />} />
+            <Route path="*" element={<NotFound />} />
           </Routes>
         </Container>
         <Credits />

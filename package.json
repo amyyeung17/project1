@@ -3,11 +3,10 @@
   "version": "1.0.0",
   "description": "",
   "source": "index.html",
-  "homepage": "https://www.ayeung.me/project1",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "parcel",
-    "build": "parcel build index.html --no-scope-hoist"
+    "build": "parcel build ./index.html --no-scope-hoist"
   },
   "keywords": [],
   "author": "Amy Yeung <amyyeung17@gmail.com>",
