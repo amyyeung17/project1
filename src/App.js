@@ -19,10 +19,7 @@ const App = () => {
     if (url[url.length - 1] === '/') {
       path = url.slice(0, url.length -1)
     }
-    path = path.slice(1)
-    console.log(location)
-    console.log(path)
-    return path
+    return path.slice(1)
   }
 
 

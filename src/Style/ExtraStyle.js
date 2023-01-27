@@ -16,15 +16,11 @@ export const CreditDiv = styled.div`
   position: relative;
 `
 
-//Error.js
-export const ErrorButton = styled(StyledButton)`
-  ${mainCss}
-`
-
 export const ErrorDiv = styled.div`
   ${columnDivCenter}
-  height: 95vh;
+  height: 75vh;
   max-height: 100%;
+  width: 100vw;
 `
 
 export const ErrorText = styled.p`
@@ -183,12 +179,12 @@ export const MenuText = styled.p`
   }
 `
 
-export const PageHeader = styled.p`
+export const BigHeader = styled.p`
   color: #455A64;
-  font-size: 2.25rem;
-  margin: 1rem;
+  font-size: 5rem;
+  margin: .25rem;
+`
 
-  @media only screen and (max-width: 425px) {
-    font-size: 2rem;
-  }
+export const PageHeader = styled(BigHeader)`
+  font-size: 3rem;
 `

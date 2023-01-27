@@ -52,3 +52,6 @@ Small personal project to practice React, Redux, and styled-components concepts.
   - Todo - removed the menu when switching to the alternate display mode for bigger screens 
   - Stopwatch - adjusted some positionings for smaller screen (very basic changes based on the current code)
   - Timer - Fixed the Alert component's appearance and placement 
+
+  ## Update 1/26
+  - Updated error page
