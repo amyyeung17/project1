@@ -15,7 +15,7 @@ export const AlertDiv = styled.div`
   max-width: 27.5rem;
   padding: 2rem 1rem 1rem;
   position: absolute;
-  top: 0%;
+  top: 20%;
   width: 100%;
   z-index: 15; 
 `

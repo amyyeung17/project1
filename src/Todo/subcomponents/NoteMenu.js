@@ -2,7 +2,7 @@ import React from 'react'
 import { NotemenuButton, NotemenuDiv } from '../../Style/TodoStyle'
 
 
-const NoteMenu = ({id, smallswitch, switchapp, addNote, eraseNote, setSmall}) => {
+const NoteMenu = ({id, switchapp, addNote, eraseNote}) => {
   return(
     <>
       <NotemenuDiv switchapp={switchapp}> 

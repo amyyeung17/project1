@@ -1,14 +1,14 @@
-import React, { useCallback } from 'react'
+import React, { useCallback, useState } from 'react'
 import { testNum } from '../../Shared/sharedfunc'
 import DisplayTime from '../../Shared/DisplayTime'
 import Switch from '../../Shared/Switch'
 import * as T from '../../Style/SharedStyle'
 import { SwitchHoverDiv } from '../../Style/SharedStyle'
-
 import Convert from './Convert'
 import Preset from './Preset'
 
-const EditTime = ({children, editState, inputType, time, allInputs, setType, setTime}) => {
+const EditTime = ({children, editState, time, allInputs, setTime}) => {
+  const [inputType, setType] = useState(false)
 
   const carryOver = useCallback(({period, setTime}) => {
     setTime(t => {
@@ -54,25 +54,31 @@ const EditTime = ({children, editState, inputType, time, allInputs, setType, set
       <T.TimerButton direction="down" onClick={() => carryUnder({period, setTime})}/>
   )
  
+  const getSwitchStyle = () => ({
+    color: inputType ? '#455A64' : '#9396A9',
+    err: (!editState || (time.hr >= 99 || time.min >= 60 || time.sec >= 60)),
+    display: (editState ? 'flex' : 'none'), 
+    divMargin: (editState && '.5rem'),
+    labelMargin: '',
+    labelLoc: 'flex-end',
+    text: 'Type'
+  })
+
   return(
     <>
       <DisplayTime 
-        appType="timer" 
-        main={false} 
+        timeStyle={{type: 'timeredit', colonfs: (inputType ? '-.25rem' : '1.25rem'), fs: '6rem', margin: '.5rem .25rem', smfs: '5rem'}}
         time={time} 
         top={editTop}
         bottom={editBottom}
-        inputType={inputType} 
-        setTime={setTime}
       />
       <Convert time={time} />
       {children}
       <Switch
-          appType="timer"
-          err={!editState || (time.hr >= 99 || time.min >= 60 || time.sec >= 60)}
-          mode={!editState}
-          displayType={inputType}
-          setDisplay={setType}
+        err={!editState || (time.hr >= 99 || time.min >= 60 || time.sec >= 60)}
+        switchStyle={getSwitchStyle()}
+        displayType={inputType}
+        setDisplay={setType}
         >
         <SwitchHoverDiv inputType={inputType}>
           Toggle the current type of input {inputType ? 'to buttons' : 'to text fields'}

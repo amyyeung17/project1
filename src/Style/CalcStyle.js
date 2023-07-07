@@ -1,41 +1,9 @@
 import styled, { css } from 'styled-components'
 import { testNum } from '../Shared/sharedfunc'
-import { size, limits } from './Sizes'
+import { limits } from './Sizes'
 import { columnDiv,rowAlignCenter, MenuStyledOptions, StyledButton } from './AllStyle'
 import { deleteCss, reverseMainCss, reverseSecondCss, secondaryCss } from './Colors' 
 import { cardTitleShadow, lowShadow, menuShadow } from './BoxShadow'
-
-const smallSize = css`
-  @media only screen and (max-width: 599px) {
-    width: 100%;
-  }
-
-  @media only screen and ${limits.sm} and (max-width: 749px) {
-    grid-column: 2 / 10;
-  }
-`
-
-export const CalcBase = styled.div`
-  ${columnDiv}
-  margin-top: .5rem;
-  max-height: 100%;
-  position: relative;
-  top: 2.5%;
-
-  ${smallSize}
-
-  @media only screen and (min-width: 750px) and (max-width: ${size.smscale}) {
-    grid-column: 5 / 11;
-  }
-
-  @media only screen and ${ limits.smscale }{
-    grid-column: 7 / 14
-}
-
-  @media only screen and ${ limits.laptopfixed } {
-    grid-column: 7 / 13
-  }
-`
 
 export const CalcDiv = styled.div`
   ${columnDiv}
@@ -44,8 +12,9 @@ export const CalcDiv = styled.div`
   background-color: #CFD8DC;
   border: 2px solid #6161611A;
   border-radius: .25rem;
-  width: 26rem;
+  max-width: 26rem;
   max-height: 35rem;
+  width: 100%;
 
   @media only screen and ${limits.xs} and (max-width: 599px) {
     min-width: 20rem;
@@ -86,7 +55,7 @@ export const CalcKeysDiv = styled.div`
   height: 80%;
 
   @media only screen and ${limits.xs} and (max-width: 599px) {
-    width: 90%;
+    width: 95%;
   }
 `
 
@@ -107,24 +76,6 @@ export const DisplayDiv = styled.div`
   }
 `
 
-export const PastBase = styled.div`
-  ${columnDiv}
-  grid-column: 2 / 7;
-  position: relative;
-  width: auto;
-
-  ${smallSize}
-
-  @media only screen and (min-width: 750px) and (max-width: 904px) {
-    grid-column: 2 / 5;
-    z-index: 1;
-  }
-
-  @media only screen and ${ limits.laptop } {
-    grid-column: 3 / 7;
-  }
-`
-
 export const PastDiv = styled.div`
   ${columnDiv}
   ${lowShadow}
@@ -136,7 +87,7 @@ export const PastDiv = styled.div`
   overflow-y: scroll;
   width: 16.5rem;
 
-  @media only screen and ${limits.xs} and (max-width: 749px) {
+  @media only screen and ${limits.xs} and (max-width: 769px) {
     ${menuShadow}
     display: ${props => !props.switchState && 'none'};
     max-width: 24rem;
@@ -189,7 +140,7 @@ export const PastHeader = styled.p`
   font-size: 1.75rem;
   margin: .5rem;
 
-  @media only screen and (max-width: 749px) {
+  @media only screen and (max-width: 769px) {
     display: none;
   }
 `
@@ -204,7 +155,7 @@ export const PastMainButton = styled(StyledButton)`
   min-width: 17rem;
   width: 75%;
 
-  @media only screen and (min-width: 750px) {
+  @media only screen and (min-width: 769px) {
     display: none;
   }
 `

@@ -3,29 +3,25 @@ import { addMilliZero } from './sharedfunc'
 import * as T from '../Style/SharedStyle'
 
 
-const DisplayTime = ({main, time, appType, ...props}) => {
+const DisplayTime = ({time, timeStyle, ...props}) => {
   
   return (
     <>
-      <T.Base type={appType}>
+      <T.Base timeStyle={timeStyle}>
         {Object.entries(time).map(([k, v], index) => {
           return(
             <React.Fragment key={k + index}>
               <T.AlignTime>
-                {(appType === 'timer' && !main) && props.top(k)}
-                {(!(appType === 'stopwatch' && !main)) && 
-                  <T.Label> {k} </T.Label>
-                }
+                {timeStyle.type === 'timeredit' && props.top(k)}
+                {timeStyle.type !== 'stopwatchlap' && <T.Label> {k} </T.Label> }
                 { k === 'ms' ?
-                  <T.Ms main={main}> { addMilliZero(v) } </T.Ms>
+                  <T.Ms timeStyle={timeStyle}> { addMilliZero(v) } </T.Ms>
                 :
-                  <T.Text appType={appType} main={main}> { (v < 10 ? '0' + v : v) } </T.Text>
+                  <T.Text timeStyle={timeStyle}> { (v < 10 ? '0' + v : v) } </T.Text>
                 }
-                {(appType === 'timer' && !main) && props.bottom(v, k)}
+                {timeStyle.type === 'timeredit' && props.bottom(v, k)}
               </T.AlignTime>
-              {(k !== 'sec' && k !== 'ms') &&
-                <T.Colon appType={appType} main={main} inputType={props.inputType}> : </T.Colon>
-              }
+              {(k !== 'sec' && k !== 'ms') && <T.Colon timeStyle={timeStyle}> : </T.Colon> }
             </React.Fragment>
           )
         })}

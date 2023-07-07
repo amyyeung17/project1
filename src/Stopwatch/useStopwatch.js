@@ -31,6 +31,7 @@ export default useStopwatch = ({begin, input, laps, save,
       setPause(new Date().getTime())
     } 
 
+
     if (begin !== null && input === 'restart') {
       setPause(0)
       setTime({hr: 0, min: 0, sec: 0, ms: 0})
@@ -38,6 +39,7 @@ export default useStopwatch = ({begin, input, laps, save,
       setLaps([])
       setBegin(null)
       setDif(0)
+      
     }
   }, [dif, input])
 

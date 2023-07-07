@@ -27,7 +27,6 @@ const App = () => {
     <>
       <ColumnDivAlign>
         {states.includes(getUrl(location.pathname)) && <Menu />}
-        <Container> 
           <Routes>
             <Route path="/todo" element={<ToDo />} />
             <Route path="/calculator" element={<Calc />} />
@@ -37,7 +36,6 @@ const App = () => {
             <Route path="/" element={<Navigate replace to="/todo" />}/>
             <Route path="*" element={<NotFound />} />
           </Routes>
-        </Container>
         <Credits />
       </ColumnDivAlign>
     </>

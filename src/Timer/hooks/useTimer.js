@@ -3,8 +3,10 @@ import { calcAll } from '../../Shared/sharedfunc'
 
 export default useTimer = ({date, dif, input, remain, start, 
   setDif, setRemain, setTime}) => {
+ 
   useEffect(() => {
-    if (input === 'run' || input === 'restart') {
+    if ((input === 'run' || input.includes('restart')) && remain > -1000) {
+ 
       const intervalId = setInterval(() => {
         if (remain > -1000) {
           const current = new Date()

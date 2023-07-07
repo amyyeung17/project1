@@ -12,21 +12,10 @@ export const AlignTime = styled.div`
 
 export const Base = styled.div`
   align-items: center;
+  box-sizing: border-box;
   display: flex; 
-  min-width: 20rem;
+  padding: .25rem 0rem;
   position: relative;
-
-  ${props => props.type === 'stopwatch' &&
-    css`
-      @media only screen and ${ limits.xs } and (max-width: 549px) {
-        left: 2%;
-      }
-
-      @media only screen and (min-width: 550px) and (max-width: 659px) {
-        left: -1%;
-      }
-    `
-  }
 `
 
 export const Label = styled.p`
@@ -37,44 +26,31 @@ export const Label = styled.p`
 
 export const Text = styled.p`
   color: #455A64;
-  ${props => props.appType === 'timer' ? 
+  ${({...props}) => (
     css`
-      font-size: ${props.main ? '7rem' : '6rem'};
-      margin: ${props.main ? '.5rem 0rem' : '.5rem .25rem'};
+      font-size: ${props.timeStyle.fs};
+      margin: ${props.timeStyle.margin};
+      
+      @media only screen and (max-width: 549px) {
+        font-size: ${props.timeStyle.type.includes('stopwatch') && props.timeStyle.smfs};
+      }
 
       @media only screen and (max-width: 425px) {
-        font-size: ${props.main ? '5.5rem' : '4.5rem'};
+        font-size: ${props.timeStyle.type.includes('timer') && props.timeStyle.smfs};
       }
-    `
-  :
-    css`
-      font-size: ${props.main ? '5.75rem' : '2.25rem'};
-      margin: ${props.main ? '.5rem 0rem' : '.75rem 0rem 0rem'};
-
-      @media only screen and (max-width: 549px) {
-        font-size: ${props.main ? '4rem' : '1.75rem'};
-      }
-    `
-  }
+  `)}
 `
 
 export const Colon = styled(Text)`
   margin: 0rem .125rem;
   position: relative;
-  top: ${props => {
-    if (props.appType === 'stopwatch') {
-      return(props.main ? '1.25rem' : '.125rem')
-    } else {
-      return((!props.main && props.inputType) ? '-.25rem' : '1.25rem')
-    }
-  }}
-
+  top: ${props => props.timeStyle.colonfs}; 
 `
 
 export const Ms = styled(Text)`
   margin-left: 0rem;
 
-  ${props => props.main &&
+  ${props => (props.timeStyle.fs === '7rem' || props.timeStyle.fs === '5.75rem') &&
     css`
       width: 6.75rem;
 
@@ -136,8 +112,6 @@ export const OptionsBase = styled.div`
   display: flex; 
   margin: ${props => props.appType === 'timer' && '1rem 0rem 2rem'};
   position: relative;
-
-  
 `
 
 export const SwitchDisplay = styled.div`
@@ -173,8 +147,10 @@ export const SwitchDisplay = styled.div`
 `
 
 export const SwitchDiv = styled.div`
-  display: ${props => props.appType === 'stopwatch' || !props.$mode ? 'flex' : 'none'};
-  margin-bottom: ${props => (props.appType === 'timer' && !props.$mode) && '.5rem'};
+  ${props => css`
+    display: ${props.switchStyle.display},
+    margin-bottom: ${props.switchStyle.divMargin}
+  `}
   position: relative;
 
   @media only screen and ${ limits.laptop } {
@@ -217,18 +193,14 @@ export const SwitchLabel = styled.label`
   cursor: pointer;
   display: flex;
   font-size: 1rem;
-
-  ${props => props.appType === 'timer' ?
-    css`
-      align-self: flex-end;
-      color: ${props => props.displayType ? '#455A64' :'#9396A9'};
-      opacity: ${props => props.err ? '.38' : '1'};
-    `
-  :
-    css`
-      color: ${props => props.displayType? '#474B5D' :'#9396A9'};
-      margin: 1rem 0rem;
-    `
+  
+  
+  ${props => css`
+    align-self: ${props.switchStyle.labelLoc};
+    color: ${props.switchStyle.color};
+    margin: ${props.switchStyle.labelMargin};
+    opacity: ${props.switchStyle.err ? '.38' : '1'};
+  `
   }
 
 `

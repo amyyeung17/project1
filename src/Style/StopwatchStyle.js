@@ -8,20 +8,21 @@ export const LapsDiv = styled.div`
   border: 2px solid #CFD2DC;
   border-radius: .25rem;
   box-sizing: border-box;
-  height: 13rem;
+  height: 15rem;
   margin-bottom: .75rem;
   min-width: 20rem;
   max-width: 23rem;
+  padding: .25rem 0rem;
   overflow-y: auto;
   width: 100%;
 
   @media only screen and ${ limits.smscale } {
-    height: 15rem;
+    height: 17rem;
     width: 25rem;
   }
   
   @media only screen and ${ limits.laptop } {
-    height: 17rem;
+    height: 19rem;
     width: 27rem;
   }
 `
@@ -52,9 +53,4 @@ export const StopwatchDiv = styled.div`
   ${columnDivCenter}
   min-height: 77.5vh;
   transition: all 300ms ease-in-out;
-
-  @media only screen and (min-width: 550px) and (max-width: 659px) {
-    position: relative;
-    left: -2%;
-  }
 `

@@ -1,9 +1,9 @@
 import React, { useRef } from 'react'
 import { stringSplit } from '../functions/getCalc'
 import useScrollBottom from '../../Shared/useScrollBottom'
-import { PastBase, PastButton, PastDiv, PastDisplayDiv, 
+import {PastButton, PastDiv, PastDisplayDiv, 
   PastHeader, PastMainButton, PastMainIcon } from '../../Style/CalcStyle'
-
+  import { Col } from 'react-awesome-styled-grid'
 
 const PastCalc = ({ pastop, switchState, editPast, setSwitch}) => {
   const displayRef = useRef(null)
@@ -11,7 +11,7 @@ const PastCalc = ({ pastop, switchState, editPast, setSwitch}) => {
   
   return (
     <>
-      <PastBase>
+      <Col xs={4} sm={3} md={2} offset={{xs: 0, sm: 0, md: 1}} align="center"> 
         <PastMainButton switchState={switchState} onClick={() => setSwitch(!switchState)}> 
           { switchState ? 'Close' : 'Past results' }
           <PastMainIcon switchState={switchState} />
@@ -35,7 +35,7 @@ const PastCalc = ({ pastop, switchState, editPast, setSwitch}) => {
             })
           }
         </PastDiv>
-      </PastBase>
+      </Col>
     </>
   )
 }

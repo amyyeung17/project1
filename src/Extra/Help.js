@@ -15,29 +15,27 @@ const Help = () => {
 
   return (
     <>
-      <Base> 
-        <PageHeader> Help </PageHeader>
-        <HelpDiv>
-          {states.map((s, index) => {
-            return(
-              <React.Fragment key={s + index}>
-                <HelpOption selected={current === s} option={s}>
-                  <HelpButton onClick={() => setCurrent(c => ((c === '' || c !== s) ? s  : ''))}  />
-                  {s}
-                  <span className={`bi bi-chevron-${(current === s ? 'up' : 'down')}`}> </span>
-                </HelpOption>
-                <HelpListDiv selected={current === s}>
-                  <HelpList selected={current === s}>
-                    {info.map((i, index) => (
-                      <li key={s+ 'info' + index}> {i} </li>
-                    ))}
-                  </HelpList>
-                </HelpListDiv>
-              </React.Fragment>
-            )
-          })}
-        </HelpDiv>
-      </Base>
+      <PageHeader> Help </PageHeader>
+      <HelpDiv>
+        {states.map((s, index) => {
+          return(
+            <React.Fragment key={s + index}>
+              <HelpOption selected={current === s} option={s}>
+                <HelpButton onClick={() => setCurrent(c => ((c === '' || c !== s) ? s  : ''))}  />
+                {s}
+                <span className={`bi bi-chevron-${(current === s ? 'up' : 'down')}`}> </span>
+              </HelpOption>
+              <HelpListDiv selected={current === s}>
+                <HelpList selected={current === s}>
+                  {info.map((i, index) => (
+                    <li key={s+ 'info' + index}> {i} </li>
+                  ))}
+                </HelpList>
+              </HelpListDiv>
+            </React.Fragment>
+          )
+        })}
+      </HelpDiv>
     </>
   )
 }

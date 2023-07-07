@@ -1,4 +1,4 @@
-import React, { useCallback, useState } from 'react'
+import React, { useCallback, useState, useRef } from 'react'
 import { getTimeWarning } from './functions/getTime'
 import useStartTimer from './hooks/useStartTimer'
 import useTimer from './hooks/useTimer'
@@ -6,7 +6,6 @@ import Choices from '../Shared/Choices'
 import ErrorDisplay from './subcomponents/ErrorDisplay'
 import Countdown from './subcomponents/Countdown'
 import EditTime from './subcomponents/EditTime'
-import { Base } from '../Style/AllStyle'
 import { TimerDiv } from '../Style/TimerStyle'
 
 const Timer = () => {
@@ -16,8 +15,9 @@ const Timer = () => {
   const [date, setDate] = useState(null)
   const [start, setStart] = useState(null)
   const [dif, setDif] = useState(2000)
-  const [inputType, setType] = useState(false)
-
+  
+  const currentTime = useRef({})
+  
   useStartTimer({input, time, setDate, setDif, setRemain, setStart, setTime})
 
   useTimer({date, dif, input, remain, start, setDif, setRemain, setTime})
@@ -25,9 +25,12 @@ const Timer = () => {
   const allInputs = useCallback((type) => {
     if (type === 'main') {
       setInput(i => {
-        if(i === 'run' || i === 'restart') {
+        if (i.includes('restart')) {
+          return Object.entries(currentTime.current).length !== 0 ? 'done' : 'pause' 
+        } else if (i === 'run') {
           return 'pause'
         } else if (i === 'alert') {
+          currentTime.current = {}
           return 'done'
         } else {
           return 'run'
@@ -44,37 +47,42 @@ const Timer = () => {
     editState ? 
       {one: 'Clear', two: 'Set timer'} 
     :
-      {one: 'Cancel', two: ((input === 'run' || input === 'restart') ? 'Pause' : 'Start')}
+      {one: 'Cancel', two: ((input === 'run' || input.includes('restart')) ? 'Pause' : 'Start')}
     )
 
   const TimeDisplay = ({children}) => {
     return (editState ?
-      <EditTime editState={editState} inputType={inputType} time={time} setTime={setTime} setType={setType} allInputs={allInputs}>
+      <EditTime editState={editState} time={time} setTime={setTime} allInputs={allInputs}>
         {children}
       </EditTime>
     :
-      <Countdown input={input} inputType={inputType} time={time} allInputs={allInputs}>
+      <Countdown input={input} time={time} allInputs={allInputs}>
         {children}
       </Countdown>
     )
   }
 
+  const mainOnly = (type) => {
+    if (type === 'main') {
+      currentTime.current = time
+    }
+    allInputs(type)
+  }
+
   return(
     <>
-      <Base>
-        <ErrorDisplay time={time} />
-        <TimerDiv>
-          <TimeDisplay> 
-            <Choices
-              action={allInputs}
-              appType="timer"
-              err={editState && ((time.hr === 0 && time.sec === 0 && time.min === 0) || getTimeWarning(time))} 
-              type={{one: (editState ? 'clear' : 'cancel'), two: 'main'}} 
-              text={optionsText}
-            />
-          </TimeDisplay>
-        </TimerDiv>
-      </Base>
+      <ErrorDisplay time={time} />
+      <TimerDiv>
+        <TimeDisplay> 
+          <Choices
+            action={mainOnly}
+            appType="timer"
+            err={editState && ((time.hr === 0 && time.sec === 0 && time.min === 0) || getTimeWarning(time))} 
+            type={{one: (editState ? 'clear' : 'cancel'), two: 'main'}} 
+            text={optionsText}
+          />
+        </TimeDisplay>
+      </TimerDiv>
     </>
   )
 }

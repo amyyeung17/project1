@@ -13,7 +13,7 @@ import { size } from '../Style/Sizes'
 import Switch from '../Shared/Switch'
 import { FixedButton, MenuDiv, MenuHeader, NoteDiv, NotemenuButton, TodoDiv, TodoText } from '../Style/TodoStyle'
 import { clearList, createNote, deleteNote } from '../../actions/index' 
-
+import { ColumnDivAlign, Container } from '../Style/AllStyle' 
 const ToDo = ({note, dispatchClearList, dispatchCreateNote, dispatchDeleteNote}) => {
   const [id, setId] = useState(Object.keys(note).length - 1)
   const [nav, setNav] = useState(0)
@@ -88,6 +88,7 @@ const ToDo = ({note, dispatchClearList, dispatchCreateNote, dispatchDeleteNote})
 
   return(
     <>
+      <Container>
       <MenuDiv switchapp={switchapp}>
         <MenuHeader smallswitch={smallswitch && (id > -1)} switchapp={switchapp}> All Notes </MenuHeader>
         <Dropdown
@@ -122,7 +123,7 @@ const ToDo = ({note, dispatchClearList, dispatchCreateNote, dispatchDeleteNote})
           setNav={setNav}
         />
         {(parseInt(size.laptop) <= windowSize.width) &&
-          <Switch appType="todo" displayType={switchapp} setDisplay={setSwitch}/>
+          <Switch appType="todo" displayType={switchapp} switchStyle={{err: false, color: switchapp ? '#474B5D' : '#9396A9', labelMargin: '1rem 0rem', text: 'Display'}} setDisplay={setSwitch}/>
         } 
       </MenuDiv>
       <TodoDiv ref={bottomRef} length={id} switchapp={switchapp} length={Object.keys(note).length}>
@@ -141,6 +142,7 @@ const ToDo = ({note, dispatchClearList, dispatchCreateNote, dispatchDeleteNote})
         disabled={offset === 0} 
         onClick={() => setTop(!top)}  
       />  
+      </Container> 
     </>
   )
 }

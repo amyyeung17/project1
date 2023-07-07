@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react'
 
+//7-6 - stale state issues
 export default useStartTimer = ({input, time, setDate, setDif, 
   setRemain, setStart, setTime}) => {
     const [pausetime, setPausetime] = useState(0)
@@ -17,7 +18,7 @@ export default useStartTimer = ({input, time, setDate, setDif,
         setPausetime(new Date())
       } 
 
-      if (input === 'restart') {
+      if (input.includes('restart')) {
         end.setHours(end.getHours() + original[0], end.getMinutes() + original[1], end.getSeconds() + original[2])
         setTime({hr: original[0], min: original[1], sec: original[2]})
       } else {
@@ -32,6 +33,7 @@ export default useStartTimer = ({input, time, setDate, setDif,
       } else {
         setDif(2000)
       }
+  
       setRemain((end.getTime() - new Date().getTime()) - 1000)
     }
     if (input === 'cancel' || input === 'done') {

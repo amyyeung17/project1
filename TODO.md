@@ -55,3 +55,11 @@ Small personal project to practice React, Redux, and styled-components concepts.
 
   ## Update 1/26
   - Updated error page
+
+
+## Update 7/7
+- Significants updates including bug fixes and removing redundancies 
+- Timer - Fixed restart mechanism 
+- Gradually shifting from hard-coded grid to react-awesome-styled-grid for more concise code 
+- Reduce style props by merging into a style object, reduced significant amount of CSS 
+- Fixed display issue for timing of laps in the Stopwatch section for smaller devices 

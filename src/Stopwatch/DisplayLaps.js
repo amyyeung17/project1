@@ -17,8 +17,7 @@ const DisplayLaps = ({laps, save}) => {
               <LapsTextBase key={'Lap' + index}>
                 <LapsText> {'Lap ' + index} &nbsp; </LapsText>
                 <DisplayTime
-                  appType="stopwatch"
-                  main={false}
+                  timeStyle={{type: 'stopwatchlap', colonfs: '.125rem', fs: '2.25rem', margin: '.75rem 0rem 0rem', smfs: '1.75rem'}}
                   time={calcAll(l)}
                 />
               </LapsTextBase> 

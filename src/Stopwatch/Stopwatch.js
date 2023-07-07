@@ -3,7 +3,6 @@ import useStopwatch from './useStopwatch'
 import DisplayLaps from './DisplayLaps'
 import Choices from '../Shared/Choices'
 import DisplayTime from '../Shared/DisplayTime'
-import { Base } from '../Style/AllStyle'
 import { Restart, Start, StopwatchDiv } from '../Style/StopwatchStyle'
 
 const Stopwatch = () => {
@@ -33,26 +32,27 @@ const Stopwatch = () => {
 
   return(
     <>
-      <Base>
-        <StopwatchDiv>
-          <DisplayTime appType="stopwatch" main={true} time={time} />
-          {input === '' || input === 'restart' ?
-              <Start onClick={() => {setInput('run'); setBegin(new Date())}}> Start </Start>
-            :
-              <>
-                <DisplayLaps laps={laps} save={save} />
-                <Choices 
-                  action={allLaps}
-                  appType="stopwatch"
-                  err={!running}
-                  type={{one: input, two: 'lap'}}
-                  text={{one: (running ? 'Pause' : 'Start'), two: 'Lap'}}
-                />
-                <Restart onClick={() => {setInput('restart')}}> Restart </Restart>
-              </> 
-          }
-        </StopwatchDiv>
-      </Base>
+      <StopwatchDiv>
+        <DisplayTime 
+          timeStyle={{type: 'stopwatchmain', colonfs: '1.25rem', fs: '5.75rem', margin: '.5rem 0rem', smfs: '4rem'}}
+          time={time} 
+        />
+        {input === '' || input === 'restart' ?
+            <Start onClick={() => {setInput('run'); setBegin(new Date())}}> Start </Start>
+          :
+            <>
+              <DisplayLaps laps={laps} save={save} />
+              <Choices 
+                action={allLaps}
+                appType="stopwatch"
+                err={!running}
+                type={{one: input, two: 'lap'}}
+                text={{one: (running ? 'Pause' : 'Start'), two: 'Lap'}}
+              />
+              <Restart onClick={() => {setInput('restart')}}> Restart </Restart>
+            </> 
+        }
+      </StopwatchDiv>
     </>
   )
 }
