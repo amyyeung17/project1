@@ -2,13 +2,13 @@ import React, { useRef } from 'react'
 import useScrollBottom from '../../Shared/useScrollBottom'
 import { DropdownDiv, DropdownButton } from '../../Style/TodoStyle'
 
-const Dropdown = ({note, past, smallswitch, switchapp, selectNote, nav, id}) => {
+const Dropdown = ({note, past, selectNote, nav, id}) => {
   const displayRef = useRef(null)
   useScrollBottom({condition: (id > past), displayRef, val: id})
 
   return(
     <>
-      <DropdownDiv ref={displayRef} smallswitch={smallswitch && (id > -1)} switchapp={switchapp}>
+      <DropdownDiv ref={displayRef}>
         {Object.keys(note).length !== 0 &&
           Object.keys(note).map((k, index) => {
             return(

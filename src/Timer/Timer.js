@@ -4,8 +4,7 @@ import useStartTimer from './hooks/useStartTimer'
 import useTimer from './hooks/useTimer'
 import Choices from '../Shared/Choices'
 import ErrorDisplay from './subcomponents/ErrorDisplay'
-import Countdown from './subcomponents/Countdown'
-import EditTime from './subcomponents/EditTime'
+import TimeDisplay from './subcomponents/TimeDisplay'
 import { TimerDiv } from '../Style/TimerStyle'
 
 const Timer = () => {
@@ -21,6 +20,7 @@ const Timer = () => {
   useStartTimer({input, time, setDate, setDif, setRemain, setStart, setTime})
 
   useTimer({date, dif, input, remain, start, setDif, setRemain, setTime})
+
 
   const allInputs = useCallback((type) => {
     if (type === 'main') {
@@ -50,18 +50,6 @@ const Timer = () => {
       {one: 'Cancel', two: ((input === 'run' || input.includes('restart')) ? 'Pause' : 'Start')}
     )
 
-  const TimeDisplay = ({children}) => {
-    return (editState ?
-      <EditTime editState={editState} time={time} setTime={setTime} allInputs={allInputs}>
-        {children}
-      </EditTime>
-    :
-      <Countdown input={input} time={time} allInputs={allInputs}>
-        {children}
-      </Countdown>
-    )
-  }
-
   const mainOnly = (type) => {
     if (type === 'main') {
       currentTime.current = time
@@ -73,10 +61,9 @@ const Timer = () => {
     <>
       <ErrorDisplay time={time} />
       <TimerDiv>
-        <TimeDisplay> 
+        <TimeDisplay editState={editState} time={time} input={input} setTime={setTime} allInputs={allInputs}> 
           <Choices
             action={mainOnly}
-            appType="timer"
             err={editState && ((time.hr === 0 && time.sec === 0 && time.min === 0) || getTimeWarning(time))} 
             type={{one: (editState ? 'clear' : 'cancel'), two: 'main'}} 
             text={optionsText}

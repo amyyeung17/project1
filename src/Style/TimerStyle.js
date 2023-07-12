@@ -36,12 +36,8 @@ export const AlertText = styled.p`
   margin: .25rem 0rem;
   text-align: center;
 
-  @media only screen and (max-width: 399px) {
+  @media only screen and (min-width: 0px) and (max-width: 450px) {
     font-size: 4rem;
-  }
-
-  @media only screen and (min-width: 400px) and (max-width: 450px) {
-    font-size: 4.5rem;
   }
 `
 
@@ -62,12 +58,6 @@ export const ErrorDiv = styled.div`
 
 export const ErrorText = styled(ConvertText)`
   font-size: 1.25rem;
-`
-
-export const Header = styled.p`
-  color: #455A64;
-  font-size: 2rem;
-  margin: .5rem 0rem;
 `
 
 export const SmallText = styled.p`
@@ -91,17 +81,13 @@ export const PresetButton = styled(StyledButton)`
   box-sizing: border-box;
   font-size: 1rem;
   margin: .25rem;
-  height: 2.25rem;
-  max-width: 7rem;
-  min-width: 5rem;
+  height: auto;
   padding: .5rem .25rem;
   position: relative;
   width: 20%;
 
   @media only screen and ${limits.xs} and (max-width: ${size.sm}) {
-    max-width: 10rem;
-    min-width: 7rem;
-    width: 65%;
+    width: 10rem;
   }
 `
 
@@ -109,7 +95,7 @@ export const PresetDiv = styled.div`
   display: flex;
   flex-wrap: wrap;
   justify-content: space-evenly;
-  max-width: 36rem;
+  max-width: 25rem;
   position: relative;
   width: 80%;
 

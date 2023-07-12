@@ -63,3 +63,22 @@ Small personal project to practice React, Redux, and styled-components concepts.
 - Gradually shifting from hard-coded grid to react-awesome-styled-grid for more concise code 
 - Reduce style props by merging into a style object, reduced significant amount of CSS 
 - Fixed display issue for timing of laps in the Stopwatch section for smaller devices 
+
+
+## Update 7/11
+- Removed remaining old grid and replaced with react-awesome-styled-grid 
+- Fixed hovering issues for the switches 
+- Reworked design of small screens for to-do lists, replacing dropdown, used radix 
+  - Added TabMenuStyle, TabMenu
+- Fixed spacing issue for Todo in large screens when display all 
+- Moved delete option and attached it to each note, allowing individual notes to be deleted when viewing all instead of the most recent
+- Removed Notemenu.js
+- Fixed input issue for Timer, does not remount & unmount for every input 
+- Added clear option for calculator
+- Consolidated and normalized grid and spacing between Calc/Todo, reducing CSS by 1/2 
+- Consolidated similar styled components to remove redundancies -> StyledButtons
+- Replaced custom Switch with Switch using radix 
+- Actually fixed the timer issue
+- Need to do 
+  - Rework Redux store so there's an intermediate between notes and items, don't update note store if adding element
+  - Replace dropdown in calc with Dropdown from radix 

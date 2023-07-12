@@ -24,7 +24,7 @@ const DisplayLaps = ({laps, save}) => {
             )
           })
         :
-          <LapsText empty="empty"> Laps displayed here </LapsText>
+          <LapsText> Laps displayed here </LapsText>
         }
       </LapsDiv>
     </>

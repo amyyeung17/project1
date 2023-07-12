@@ -1,8 +1,7 @@
 import styled, { css } from 'styled-components'
-import { limits, size } from './Sizes'
 import { clearCss, mainCss, reverseMainCss } from './Colors'
-import { columnDiv, buttonStates, TypedText } from './AllStyle'
-import { HiddenCheckbox } from './TodoStyle'
+import { buttonStates, TypedText } from './AllStyle'
+import * as Switch from '@radix-ui/react-switch'
 
 export const AlignTime = styled.div`
   align-items: center;
@@ -49,32 +48,6 @@ export const Colon = styled(Text)`
 
 export const Ms = styled(Text)`
   margin-left: 0rem;
-
-  ${props => (props.timeStyle.fs === '7rem' || props.timeStyle.fs === '5.75rem') &&
-    css`
-      width: 6.75rem;
-
-      @media only screen and ${ limits.smscale } {
-        width: 7.5rem;
-      }
-
-      @media only screen and ${ limits.laptop } {
-        width: 8.5rem;
-      }
-    `
-  } 
-`
-
-export const TimerButton = styled.button.attrs(props => ({
-  className: 'bi bi-arrow-' + props.direction
-}))`
-  ${clearCss}
-  border: none;
-  font-size: 1.5rem;
-  margin: .25rem;
-  padding: .375rem .75rem;
-
-  ${buttonStates}
 `
 
 export const TimerInput = styled(TypedText).attrs({maxLength: '3'})`
@@ -110,82 +83,16 @@ export const Options = styled.button`
 export const OptionsBase = styled.div`
   align-items: center;
   display: flex; 
-  margin: ${props => props.appType === 'timer' && '1rem 0rem 2rem'};
+  margin: 1rem 0rem;
   position: relative;
 `
-
-export const SwitchDisplay = styled.div`
-  background: #9396A9;
-  border-radius: 32px;
-  height: 1rem;
-  opacity: ${props => props.err ? '.38' : '1'};
-  padding: 4px; 
-  position: relative; 
-  width: 2.5rem;
-
-  &:before {
-    background: white;
-    border-radius: 32px;
-    content: "";
-    height: 1rem;
-    position: absolute;
-    top: 50%;
-    transform: translate(0, -50%);
-    width: 1rem;
-  }
-
-  @media only screen and ${limits.xs} and (max-width: ${size.smscale}) {
-    height: .85rem;
-    width: 2rem;
-
-    &:before {
-      height: .825rem;
-      width: .825rem;
-    } 
-  }
-
-`
-
+  
 export const SwitchDiv = styled.div`
   ${props => css`
     display: ${props.switchStyle.display},
     margin-bottom: ${props.switchStyle.divMargin}
-  `}
+  `};
   position: relative;
-
-  @media only screen and ${ limits.laptop } {
-    ${props => props.switchapp &&
-      css`
-        justify-content: flex-end;
-        width: 55%;
-      `
-    }
-  }
-`
-
-
-export const SwitchInput = styled(HiddenCheckbox)`
-  display: none;
-
-  &:checked + ${SwitchDisplay} {
-    background: #455A64;
-
-    &:before {
-      transform: translate(24px, -50%);
-    }
-  }
-
-  &:disabled {
-    opacity: .38;
-  }
-
-  @media only screen and ${limits.xs} and (max-width: ${size.smscale}) {
-    &:checked + ${SwitchDisplay} {
-      &:before {
-        transform: translate(20px, -50%);
-      }
-    }
-  }
 `
 
 export const SwitchLabel = styled.label`
@@ -194,7 +101,6 @@ export const SwitchLabel = styled.label`
   display: flex;
   font-size: 1rem;
   
-  
   ${props => css`
     align-self: ${props.switchStyle.labelLoc};
     color: ${props.switchStyle.color};
@@ -202,28 +108,33 @@ export const SwitchLabel = styled.label`
     opacity: ${props.switchStyle.err ? '.38' : '1'};
   `
   }
-
 `
 
-export const SwitchHoverDiv = styled.div`
-  display: none;
-   
-  ${SwitchDiv}:hover && {
-    background-color: white;
-    border: 2px solid;
-    border-color: ${props => props.inputType ? '#455A64' :'#9396A9'};
-    border-radius: .25rem;
-    display: ${props => props.err ? 'none' : 'flex'};
-    left: 6rem;
-    font-size: .825rem;
-    padding: .25rem;
-    position: absolute;
-    top: -1.25rem;
-    width: 7rem;
-    z-index: 2;
+export const SwitchRadixInput = styled(Switch.Root)`
+  border: none;
+  border-radius: 32px;  
+  height: 1.5rem; 
+  opacity: ${props => props.err ? '.38' : '1'};
+  padding: .25rem;
+  position: relative;
+  width: 3rem;
 
-    @media only screen and ${limits.xs} and (max-width: ${size.sm}) {
-      display: none;
-    }
+  &[data-state='unchecked']{
+    background: #9396A9;
+  }
+  &[data-state='checked']{
+    background: #455A64;
+  }
+`
+
+export const SwitchRadixThumb = styled(Switch.Thumb)`
+  display: block;
+  background-color: white;
+  border-radius: 32px;
+  height: 1rem;
+  width: 1rem;
+
+  &[data-state='checked'] {
+    transform: translateX(24px);
   }
 `

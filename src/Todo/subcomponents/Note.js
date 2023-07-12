@@ -1,40 +1,41 @@
-import React, { useEffect, useState, useRef } from 'react'
+import React, { useEffect, useState, useRef, useCallback } from 'react'
 import { connect } from 'react-redux'
 import Input from './Input'
 import Checkbox from './Checkbox'
 import useScrollBottom from '../../Shared/useScrollBottom'
-import { EditButton, EditDiv, ListDiv } from '../../Style/TodoStyle'
+import { ClearStyledButton } from '../../Style/AllStyle'
+import { EditDiv, ListDiv } from '../../Style/TodoStyle'
 import { addList, addNote, cancelDeleteList, checkList, confirmDeleteList, 
   deleteList, editList, editTitle } from '../../../actions/index'
 
-const Note  = ({counter, k, note, listelement, setCounter, 
+const Note  = ({counter, k, note, listelement,  setCounter, 
   dispatchCheckList, dispatchDeleteList, dispatchEditList, dispatchEditTitle,
   dispatchAddList, dispatchAddNote, dispatchCancelList, dispatchConfirmDeleteList}) => {
   const [erase, setErase] = useState(false)
   const displayRef = useRef(null)
   const totalRef = useRef(0)
   const prevTotalRef = useRef(0)
-  const editOptions = (erase ? {one: 'cancel', two: 'confirm'} : {one: 'trash', two: 'add'})
+  const editOptions = (erase ? {one: 'x-lg', two: 'trash-fill'} : {one: 'trash', two: 'pencil'})
 
   const deleteList = (id) => {
     dispatchDeleteList(id)
     totalRef.current = totalRef.current - 1
   }
 
-  const editNote = (type) => {
+  const editNote = useCallback((type) => {
     switch(type) {
-      case 'add':
+      case 'pencil':
         dispatchAddList('')
         setCounter(c => c + 1)
         dispatchAddNote(k, counter)
         totalRef.current = totalRef.current + 1
         break
-      case 'cancel':
+      case 'x-lg':
         setErase(!erase)
         totalRef.current = prevTotalRef.current
         dispatchCancelList()
         break
-      case 'confirm':
+      case 'trash-fill':
         dispatchConfirmDeleteList()
         setErase(!erase)
         break
@@ -42,7 +43,7 @@ const Note  = ({counter, k, note, listelement, setCounter,
         setErase(!erase)
         break
     }
-  }
+  }, [note, erase])
   
   useEffect(() => {
     if(erase) {
@@ -76,8 +77,8 @@ const Note  = ({counter, k, note, listelement, setCounter,
         })}
       </ListDiv>
       <EditDiv>
-        <EditButton disabled={editOptions.one === 'trash' && totalRef.current === 0 } type={editOptions.one} onClick={() => editNote(editOptions.one)}/>
-        <EditButton type={editOptions.two} onClick={() => editNote(editOptions.two)}/>
+        <ClearStyledButton disabled={editOptions.one === 'trash' && totalRef.current === 0 } iconType={editOptions.one} onClick={() => editNote(editOptions.one)}/>
+        <ClearStyledButton iconType={editOptions.two} onClick={() => editNote(editOptions.two)}/>
       </EditDiv>
     </>
   )

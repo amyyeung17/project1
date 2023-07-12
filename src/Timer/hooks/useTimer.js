@@ -5,8 +5,7 @@ export default useTimer = ({date, dif, input, remain, start,
   setDif, setRemain, setTime}) => {
  
   useEffect(() => {
-    if ((input === 'run' || input.includes('restart')) && remain > -1000) {
- 
+    if ((input === 'run' || input.includes('restart'))) {
       const intervalId = setInterval(() => {
         if (remain > -1000) {
           const current = new Date()

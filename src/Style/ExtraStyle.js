@@ -1,8 +1,8 @@
 import styled, { css } from 'styled-components'
 import { Link } from 'react-router-dom'
 import { limits } from './Sizes'
-import { columnDiv, columnDivCenter, rowAlignCenter, StyledButton } from './AllStyle'
-import { clearCss, mainCss } from './Colors'
+import { columnDiv, columnDivCenter, rowAlignCenter } from './AllStyle'
+import { clearCss } from './Colors'
 import { alertShadow } from './BoxShadow'
 
 //Credits.js
@@ -95,8 +95,6 @@ export const HelpOption = styled.div`
     background-color: ${props => !props.selected && '#CFD8DCAD'};
   }
 `
-
-
 
 //Menu.js
 export const MenuDiv = styled.div`

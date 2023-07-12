@@ -1,12 +1,11 @@
-import React, { useCallback, useState } from 'react'
+import React, { useCallback, useMemo, useState } from 'react'
 import { testNum } from '../../Shared/sharedfunc'
 import DisplayTime from '../../Shared/DisplayTime'
-import Switch from '../../Shared/Switch'
 import * as T from '../../Style/SharedStyle'
-import { SwitchHoverDiv } from '../../Style/SharedStyle'
+import { ClearStyledButton } from '../../Style/AllStyle'
 import Convert from './Convert'
 import Preset from './Preset'
-
+import SwitchRadix from '../../Shared/SwitchRadix'
 const EditTime = ({children, editState, time, allInputs, setTime}) => {
   const [inputType, setType] = useState(false)
 
@@ -44,25 +43,25 @@ const EditTime = ({children, editState, time, allInputs, setTime}) => {
   }, [])
 
   const editTop = (period) => (
-    !inputType && <T.TimerButton direction="up" onClick={() => carryOver({period, setTime})} />
+    !inputType && <ClearStyledButton iconType="arrow-up" onClick={() => carryOver({period, setTime})} />
   )
 
   const editBottom = (original, period) => (
     inputType ? 
       <T.TimerInput value={original} onChange={event => editTimeInput({value: event.target.value, period, setTime})}/>
     :
-      <T.TimerButton direction="down" onClick={() => carryUnder({period, setTime})}/>
+      <ClearStyledButton iconType="arrow-down" onClick={() => carryUnder({period, setTime})}/>
   )
  
-  const getSwitchStyle = () => ({
+  const getSwitchStyle = useMemo(() => ({
     color: inputType ? '#455A64' : '#9396A9',
     err: (!editState || (time.hr >= 99 || time.min >= 60 || time.sec >= 60)),
     display: (editState ? 'flex' : 'none'), 
     divMargin: (editState && '.5rem'),
     labelMargin: '',
     labelLoc: 'flex-end',
-    text: 'Type'
-  })
+    text: 'Input type'
+  }), [])
 
   return(
     <>
@@ -74,16 +73,7 @@ const EditTime = ({children, editState, time, allInputs, setTime}) => {
       />
       <Convert time={time} />
       {children}
-      <Switch
-        err={!editState || (time.hr >= 99 || time.min >= 60 || time.sec >= 60)}
-        switchStyle={getSwitchStyle()}
-        displayType={inputType}
-        setDisplay={setType}
-        >
-        <SwitchHoverDiv inputType={inputType}>
-          Toggle the current type of input {inputType ? 'to buttons' : 'to text fields'}
-        </SwitchHoverDiv>
-      </Switch>
+      <SwitchRadix switchStyle={getSwitchStyle} setDisplay={setType} />
       <Preset setTime={setTime} allInputs={allInputs} />
     </>
   )

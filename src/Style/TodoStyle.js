@@ -1,10 +1,9 @@
 import styled, { css } from 'styled-components'
-import { size, limits } from './Sizes'
-import { columnDiv, hiddenText, rowAlignCenter, MenuStyledOptions, 
-  StyledButton, TypedText } from './AllStyle'
-import { clearCss, deleteCss, mainCss, optionCss, reverseSecondCss, secondaryCss } from './Colors'
-import { cardTitleShadow, cardOptionShadow, lowShadow, menuShadow,
-  menuOptionShadow } from './BoxShadow'
+import { columnDiv, hiddenText, rowAlignCenter, MenuStyledButton, 
+  StyledButton, TypedText, RightToolDiv, LeftToolDiv } from './AllStyle'
+import { mainCss, optionCss, secondaryCss } from './Colors'
+import { cardTitleShadow, cardOptionShadow, menuShadow,
+  menuOptionShadow} from './BoxShadow'
 
 //Checkbox.js
 export const CheckboxDiv = styled.div`
@@ -53,41 +52,14 @@ export const StyledCheckbox = styled.div`
   }
 `
 
-
-
 //Listed alphabetical after 
-//Dropdown.js
-export const DropdownDiv = styled.div`
-  ${columnDiv}
-  ${lowShadow}
-  border: 2px solid #CFD2DC; 
-  border-radius: .25rem;
-  height: 16rem;
-  margin: .5rem 0rem 2rem;
-  max-width: 18rem;
-  min-width: 16rem;
-  overflow-y: scroll;
-  padding: .25rem;
-  width: 100%;
-  
-  @media only screen and ${ limits.xs } and (max-width: 904px) {
-    ${menuShadow}
-    display: ${props => !props.smallswitch && 'none'};
-    height: 20rem; 
-    position: absolute;
-    top: 18rem;
- 
-  }
 
-  @media only screen and ${ limits.laptop } { 
-    display: ${props => props.switchapp && 'none'};
-  }
+//Dropdown.js
+export const DropdownDiv = styled(LeftToolDiv)`
+  height: 16rem;
 `
 
-export const DropdownButton = styled(MenuStyledOptions)`
-  max-width: 12rem;
-  width: 75%;
-
+export const DropdownButton = styled(MenuStyledButton)`
   &:hover {
     height: auto;
     max-height: 100%;
@@ -112,33 +84,14 @@ export const DropdownButton = styled(MenuStyledOptions)`
   }
 `
 
-
-//Note.js
-const editIcons = {'cancel': 'x-lg', 'confirm': 'trash-fill', 'trash': 'trash', 'add': 'pencil'}
-export const EditButton = styled(StyledButton).attrs(props => (
-  {className: `bi bi-${editIcons[props.type]}`}
-))`
-  ${props => {
-    switch(props.type){
-      case 'confirm':
-        return deleteCss
-      case 'cancel':
-        return reverseSecondCss
-      default:
-        return clearCss
-    }
-  }}
-
-  font-size: 1.5rem;
-  width: 4rem;
-`
-
 //Note.js
 export const EditDiv = styled.div`
   ${cardOptionShadow}
+  box-sizing: border-box;
   display: flex;
   height: 5rem;
   justify-content: flex-end;
+  padding: 0rem 1rem;
   position: relative;
   width: 100%;
   z-index: 2;
@@ -190,13 +143,13 @@ export const InputDiv = styled.div`
     css`
       background-color: ${props => props.erasecheck ?'#CFD8DC4D' : 'white'};
       border-bottom: 2px solid #CFD2DC;
-      min-height: 5.5rem;
+      min-height: 5rem;
       padding: .5rem .25rem;
       transition: all 300ms ease-in-out;
       width: 90%;
     
       &:hover {
-        height: ${props => props.click && 'auto' };
+        height: ${props => props.click && 'auto'};
       }
     `
   }
@@ -217,7 +170,7 @@ export const InputHeader = styled.p.attrs(props => ({as: (props.type === 'title'
     :
     css`
       color: #474B5D;
-      font-size: 1.125rem;
+      font-size: 1rem;
 
       &:hover {
         color: #474B5DEB;
@@ -240,90 +193,17 @@ export const ListDiv = styled.div`
   overflow-y: auto;
 `
 
-//Todo.js
-export const MenuDiv = styled.div`
-  ${columnDiv}
-
-  @media only screen and ${ limits.xs } and (max-width: ${ size.sm }) {
-    width: 100%;
-  }
-
-  @media only screen and ${ limits.sm }  and (max-width: ${ size.smscale }) {
-    grid-column: 2  / 10;
-  }
-
-  @media only screen and ${ limits.smscale }  {
-    grid-column: 2 / 6;
-    grid-row-start: 1;
-  }
-
-  @media only screen and ${ limits.laptop } {
-    ${props => props.switchapp &&
-      css`
-        flex-direction: row;
-        grid-column: 3 / 14;
-        height: 4rem;
-        justify-content: space-evenly;
-        margin: .5rem 0rem 1rem;
-      `
-    }
-  }
-`
-
-//ToDo.js
-export const MenuHeader = styled.h3`
-  color: #455A64;
-  font-size: 2.0rem;
-  margin: .5rem;
-
-  @media only screen and ${ limits.xs } and (max-width: 904px) {
-    display: ${props => ((!props.smallswitch) && 'none')};
-    position: absolute;
-    top: 15rem;
-  }
-  
-  @media only screen and ${ limits.laptop } {
-    display: ${props => props.switchapp && 'none'}
-  }
-`
-
-
-//Nav.js
-export const NavButton = styled(StyledButton).attrs(props => ({className: `bi bi-arrow-${props.direction}`}))`
-  ${clearCss}
-  font-size: 1.5rem;
-  margin: .25rem .75rem;
-  width: 3.5rem;
-
-  @media only screen and ${ limits.xs } and (max-width: ${ size.smscale }) {
-    margin: .5rem;
-    width: 3rem;
-  }
-`
-
 export const NavDiv = styled.div`
-  display: none;
-  @media only screen and ${ limits.xs } and (max-width: ${ size.smscale }) {
-    ${props => props.smallswitch &&
-      css`
-        display: flex;
-        justify-content: space-evenly;
-        width: 18rem;
-      `
-    }
-  }
+  align-self: center;
+  display: flex;
+  justify-content: space-evenly;
+  margin-top: 1rem;
+  width: 24rem;
 `
 
 //ToDo.js
-export const NoteDiv = styled.div`
-  ${columnDiv}
-  ${lowShadow}
+export const NoteDiv = styled(RightToolDiv)`
   border: 2px solid #CFD8DC;
-  border-radius: .25rem;
-  margin-top: 1rem;
-  max-height: 35rem;
-  min-height: 32.5rem;
-  width: 27.5rem;
   z-index: 1;
   
   &:hover {
@@ -332,125 +212,31 @@ export const NoteDiv = styled.div`
   &:focus-within {
     ${menuShadow}
   }
-
-  @media only screen and ${ limits.xs } and (max-width: ${ size.sm }) {
-    height: 32.5rem;
-    min-width: 20rem;
-    max-width: 25rem;
-    width: 90%;
-  }
-  
-  @media only screen and ${ limits.xs } and (max-width: ${ size.smscale }) {
-    display: ${props => props.smallswitch ? 'none' : 'flex'};
-  }
-
-  @media only screen and ${ limits.laptop } {
-    ${props => props.switchapp ?
-      css`
-        aspect-ratio: 1 / 1;
-        max-width: 25rem;
-      `
-    :
-      css`
-        max-height: 37.5rem;
-      `
-    }
-  } 
 `
 
-//Notemenu.js
-export const NotemenuButton = styled(StyledButton)`
-  ${props => {
-      switch(props.type) {
-        case 'edit': 
-          return mainCss
-        case 'delete':
-          return clearCss
-        case 'display':
-          return (props.smallswitch ? reverseSecondCss : secondaryCss)
-      }
-  }}
-  margin: .5rem 0rem .75rem;
-  height: 3rem;
-  width: 10rem;
-
-  @media only screen and ${ limits.xs } and (max-width: ${ size.sm }) {
-    font-size: 1.125rem;
-    max-width: 9rem;
-    min-width: 7rem;
-    width: 25%;
-  }
-
-  @media only screen and ${ limits.smscale } {
-    display: ${props => props.type === 'display' && 'none'};
-  }
-
-  @media only screen and ${ limits.laptop } {
-    ${props => props.switchapp && 
-      css`
-        left: 2rem;
-        position: relative;
-      `
-    }
-  }
-`
-
-export const NotemenuDiv = styled.div`
+export const OuterDiv = styled.div`
+  align-items: center;
   display: flex;
-  justify-content: space-evenly;
-  margin-bottom: 1rem;
+  flex-direction: column;
+  max-height: 100%;
   width: 100%;
-
-  @media only screen and ${ limits.smscale } {
-    ${columnDiv};
-    height: auto;
-    margin-top: 1rem;
-  }
-
-  @media only screen and ${ limits.laptop } {
-    flex-direction: ${props => props.switchapp && 'row'};
-    margin-bottom: ${props => props.switchapp && '0rem'};
-  }
 `
 
 //ToDo.js
 export const TodoDiv = styled.div`
   ${columnDiv}
   justify-content: ${props => props.length <= 0 ? 'center' : 'flex-start'};
-  min-height: 77.5vh;
-
-  @media only screen and ${ limits.xs } and (max-width: ${ size.sm }) {
-    height: auto;
-  }
-  
-  @media only screen and ${ limits.sm } and (max-width: ${ size.smscale }) {
-    grid-column: 3 / 9;
-  }
-
-  @media only screen and ${ limits.smscale } {
-    grid-column: 7 / 14;
-    margin-top: 1rem;
-  }
-
-  @media only screen and ${ limits.laptop } {
-    ${props => props.switchapp ?
+  min-height: 50vh;
+  @media only screen and (min-width: 767px) {
+    ${props => props.switchapp &&
       css`
         height: auto;
         flex-direction: row;
         flex-wrap: wrap;
-        justify-content: space-between;
-        grid-column: 3 / 13;
+        justify-content: space-evenly;
         margin: auto;
-      `
-      : 
-      css`
-        grid-column: 6 / 14
+        min-height: 77.5vh;
       `
     }
   }
-`
-
-export const TodoText = styled.p`
-  color: #455A64;
-  font-size: 2.5rem;
 `

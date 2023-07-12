@@ -1,9 +1,11 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import Choices from '../../Shared/Choices'
 import { AlertDiv, AlertOverlay, AlertText } from '../../Style/TimerStyle'
 
 const Alert = ({allInputs, input}) => {
- 
+ useEffect(() => {
+  allInputs('alert')
+ }, [])
   
   return(
     <>
@@ -12,7 +14,6 @@ const Alert = ({allInputs, input}) => {
         <AlertText> Time's up! </AlertText>
         <Choices 
           action={allInputs}
-          appType="timer"
           type={{one: (input === 'restart' ? 'restart1' : 'restart'), two: 'main'}} 
           text={{one: 'Restart', two: 'Done'}}
         />

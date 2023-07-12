@@ -1,33 +1,20 @@
-import styled, { css } from 'styled-components'
+import styled from 'styled-components'
+import { limits } from './Sizes'
 import { testNum } from '../Shared/sharedfunc'
 import { limits } from './Sizes'
-import { columnDiv,rowAlignCenter, MenuStyledOptions, StyledButton } from './AllStyle'
+import { rowAlignCenter, MenuStyledButton, StyledButton, LeftToolDiv, RightToolDiv } from './AllStyle'
 import { deleteCss, reverseMainCss, reverseSecondCss, secondaryCss } from './Colors' 
-import { cardTitleShadow, lowShadow, menuShadow } from './BoxShadow'
+import { cardTitleShadow, menuShadow } from './BoxShadow'
 
-export const CalcDiv = styled.div`
-  ${columnDiv}
-  ${lowShadow}
-  aspect-ratio: 3 / 4;  
+export const CalcDiv = styled(RightToolDiv)`
   background-color: #CFD8DC;
   border: 2px solid #6161611A;
-  border-radius: .25rem;
-  max-width: 26rem;
-  max-height: 35rem;
-  width: 100%;
-
-  @media only screen and ${limits.xs} and (max-width: 599px) {
-    min-width: 20rem;
-    max-width: 26rem;
-    width: 90%;
-  }
 `
 
 const iconType = {'*': 'x', '+': 'plus', '%': 'percent'}
 export const CalcKey = styled(StyledButton).attrs(props => (
   {className: `bi bi-${iconType[props.num]}`}
 ))`
-
   ${props => {
     if (testNum(props.num) || props.num === '.') {
       return reverseMainCss
@@ -76,24 +63,18 @@ export const DisplayDiv = styled.div`
   }
 `
 
-export const PastDiv = styled.div`
-  ${columnDiv}
-  ${lowShadow}
-  background-color: white;
-  border: 2px solid #CFD2DC; 
+export const PastDiv = styled(LeftToolDiv)`
   height: 75%;
   max-height: 32.5rem;
   min-height: 25rem;  
-  overflow-y: scroll;
-  width: 16.5rem;
 
-  @media only screen and ${limits.xs} and (max-width: 769px) {
+  @media only screen and ${limits.xs} and (max-width: 767px) {
     ${menuShadow}
     display: ${props => !props.switchState && 'none'};
     max-width: 24rem;
-    min-width: 17rem;
+    min-width: 20rem;
     position: absolute;
-    top: 3.5rem;
+    top: 9.5rem;
     width: 75%;
     z-index: 2;
   }
@@ -108,16 +89,15 @@ export const PastDisplayDiv = styled.div`
   opacity: 0;
   overflow-wrap: anywhere;
   transition: max-height 300ms ease-out, opacity 300ms ease-out;
-  width: 15rem;
+  width: 100%;
 `
 
-export const PastButton = styled(MenuStyledOptions)`
+export const PastButton = styled(MenuStyledButton)`
   background-color: #90A4AE;
   box-sizing: border-box;
   padding: .5rem;
   margin: .5rem .25rem;
   text-align: start;
-  width: 14rem;
   
   &:hover {
     background-color: #90A4AECC;
@@ -135,16 +115,6 @@ export const PastButton = styled(MenuStyledOptions)`
   }
 `
 
-export const PastHeader = styled.p`
-  color: #455A64;
-  font-size: 1.75rem;
-  margin: .5rem;
-
-  @media only screen and (max-width: 769px) {
-    display: none;
-  }
-`
-
 export const PastMainButton = styled(StyledButton)`
   ${props => props.switchState ? reverseSecondCss : secondaryCss};
   align-items: center;
@@ -152,18 +122,10 @@ export const PastMainButton = styled(StyledButton)`
   justify-content: space-between;
   position: relative;
   max-width: 24rem;
-  min-width: 17rem;
+  min-width: 20rem;
   width: 75%;
 
-  @media only screen and (min-width: 769px) {
+  @media only screen and (min-width: 767px) {
     display: none;
   }
-`
-
-export const PastMainIcon = styled.span.attrs(props => ({
-  className: `bi bi-chevron-${props.switchState ? 'up' : 'down'}`
-}))`
-  font-size: 1.5rem;
-  position: absolute;
-  right: .5rem; 
 `

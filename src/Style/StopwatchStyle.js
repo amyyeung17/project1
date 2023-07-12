@@ -1,7 +1,6 @@
 import styled from 'styled-components'
 import { limits } from './Sizes'
-import { columnDiv, columnDivCenter, rowAlignCenter, StyledButton } from './AllStyle'
-import { clearCss, mainCss } from './Colors'
+import { columnDiv, columnDivCenter, rowAlignCenter } from './AllStyle'
 
 export const LapsDiv = styled.div`
   ${columnDiv}
@@ -31,22 +30,10 @@ export const LapsText = styled.p`
   color: #474B5D;
   font-size: 1.75rem;
   margin: 1rem .75rem .25rem;
-  opacity: ${props => props.empty === "empty" && '.8'};
 `
 
 export const LapsTextBase = styled.div`
   ${rowAlignCenter}
-`
-
-export const Restart = styled(StyledButton)`
-  ${clearCss}
-  margin: 2rem 0rem 1rem;
-  width: 10rem;
-`
-
-export const Start = styled(StyledButton)`
-  ${mainCss}
-  width: 10rem;
 `
 
 export const StopwatchDiv = styled.div`

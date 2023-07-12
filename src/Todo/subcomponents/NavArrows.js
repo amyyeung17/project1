@@ -1,19 +1,20 @@
 import React from 'react'
-import { NavButton, NavDiv } from '../../Style/TodoStyle'
+import { NavDiv } from '../../Style/TodoStyle'
+import { ClearStyledButton } from '../../Style/AllStyle'
 
-const NavArrows = ({id, nav, smallswitch, setNav}) => {
+const NavArrows = ({id, nav, setNav}) => {
 
   return(
     <>
-      <NavDiv smallswitch={(!smallswitch && (id !== -1))}>
-        <NavButton
-          direction="left"
+      <NavDiv>
+        <ClearStyledButton
+          iconType="arrow-left"
           disabled={nav === 0 || nav < 1} 
-          onClick={() => {(nav > 0) && setNav(nav - 1)}} 
+          onClick={() => {setNav(n => ( n > 0 && n - 1))}} 
         /> 
 
-        <NavButton
-          direction="right"
+        <ClearStyledButton
+          iconType="arrow-right"
           disabled={id <= nav || (id - nav < 1)}
           onClick={() => {(id > nav) && setNav(nav + 1)}} 
         /> 

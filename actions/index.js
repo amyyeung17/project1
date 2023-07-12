@@ -64,3 +64,17 @@ export const editTitle = (id, name) => ({
   id,
   name
 })
+
+
+/**
+ * export const newNoteList = (noteId) => ({
+ *  type: 'NEW_NOTE_LIST;,
+ *  noteId,
+ *  listele: []
+ * })
+ * 
+ * case 'NEW_NOTE_LIST': 
+ *  const { noteId } = action
+ *  return {...state, [noteId] : {listele}}
+ * 
+ */

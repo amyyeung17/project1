@@ -1,7 +1,7 @@
 export const size = {
   xs: '0px',
   sm: '600px',
-  smscale: '905px',
+  smscale: '767px',
   laptopfixed: '1240px',
   laptop: '1440px',
   desktop: '2560px'

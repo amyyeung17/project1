@@ -3,8 +3,9 @@ import { stringSplit } from './functions/getCalc'
 import useCalc from './hooks/useCalc'
 import CalcKeys from './subcomponents/CalcKeys'
 import PastCalc from './subcomponents/PastCalc'
+import { DeleteStyledButton, RightDiv } from '../Style/AllStyle'
 import { CalcDiv, DisplayDiv } from '../Style/CalcStyle'
-import { Container, Row, Col } from 'react-awesome-styled-grid'
+import { Container, Row, Col, Visible } from 'react-awesome-styled-grid'
 import usePrevious from '../Todo/hooks/usePrevious'
 
 const Calc = () => {
@@ -29,18 +30,25 @@ const Calc = () => {
     }
   }, [input])
 
+
+
   return(
     <>
       <Container> 
-        <Row justify="space-evenly">
-          <PastCalc pastop={pastop} switchState={switchState} editPast={editPast} setSwitch={setSwitch}/>
-          <Col xs={4} sm={4} md={4} offset={{xs: 0, sm: 0, md: 0}} justify="center" align="center">
+        <Row>
+          <PastCalc clearFun={() => setPast([])} pastop={pastop} switchState={switchState} editPast={editPast} setSwitch={setSwitch}/>
+          <Col xs={4} sm={5} md={5} lg={6} justify="center" align="center">
             <CalcDiv>
               <DisplayDiv>
                 <p style={{margin: '0rem .5rem 0rem 0rem'}}> {display} </p>
               </DisplayDiv>
               <CalcKeys setInput={setInput} />
             </CalcDiv>
+            <Visible xs>
+              <RightDiv> 
+                <DeleteStyledButton disabled={pastop.length === 0} onClick={() => clearFun()}> Clear </DeleteStyledButton>
+              </RightDiv>
+            </Visible>
           </Col>
         </Row>
       </Container>

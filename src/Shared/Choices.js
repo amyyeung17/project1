@@ -1,14 +1,11 @@
 import React from 'react'
 import * as T from '../Style/SharedStyle'
 
-const Choices = ({action, err = false, type, text, appType}) => {
+const Choices = ({action, err = false, type, text}) => {
 
   return(
     <>
-      <T.OptionsBase
-        appType={appType}
-        type={type}
-      >
+      <T.OptionsBase>
         <T.Options
           type={type.one}
           onClick={() => action(type.one)}> 

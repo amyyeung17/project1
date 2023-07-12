@@ -3,7 +3,8 @@ import useStopwatch from './useStopwatch'
 import DisplayLaps from './DisplayLaps'
 import Choices from '../Shared/Choices'
 import DisplayTime from '../Shared/DisplayTime'
-import { Restart, Start, StopwatchDiv } from '../Style/StopwatchStyle'
+import { BigStyledButton } from '../Style/AllStyle'
+import { StopwatchDiv } from '../Style/StopwatchStyle'
 
 const Stopwatch = () => {
   const [time, setTime] = useState({hr: 0, min: 0, sec: 0, ms: 0})
@@ -38,18 +39,17 @@ const Stopwatch = () => {
           time={time} 
         />
         {input === '' || input === 'restart' ?
-            <Start onClick={() => {setInput('run'); setBegin(new Date())}}> Start </Start>
+            <BigStyledButton color="main" onClick={() => {setInput('run'); setBegin(new Date())}}> Start </BigStyledButton>
           :
             <>
               <DisplayLaps laps={laps} save={save} />
               <Choices 
                 action={allLaps}
-                appType="stopwatch"
                 err={!running}
                 type={{one: input, two: 'lap'}}
                 text={{one: (running ? 'Pause' : 'Start'), two: 'Lap'}}
               />
-              <Restart onClick={() => {setInput('restart')}}> Restart </Restart>
+              <BigStyledButton color="clear" onClick={() => {setInput('restart')}}> Restart </BigStyledButton>
             </> 
         }
       </StopwatchDiv>
